@@ -10,16 +10,7 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
     height: 50px;
-}
-
-footer{
-    background-color: dimgrey;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 main {
@@ -33,6 +24,10 @@ table{
     border-collapse: collapse;
 }
 
+td, th{
+    border: 1px solid black;
+}
+
 .main_table{
     flex-grow: 1;
     background-color: #F5DEB3;
@@ -40,7 +35,7 @@ table{
 
 .form_cell{
     border: 1px solid black;
-    width: 15%;
+    width: 20%;
 }
 
 .form_table{
@@ -51,11 +46,15 @@ table{
     padding: 10px;
 }
 
+.form_table td, .form_table th{
+    border: none;
+}
+
 .form_label{
     padding: 10px;
 }
 
-.x_checkbox, .y_radio {
+input[type="checkbox"], input[type="radio"] {
     width: 20px;
     height: 20px;
 }
@@ -70,26 +69,30 @@ table{
 }
 
 .graph_cell{
-    border: 1px solid black;
     text-align: center;
-    width: 40%;
+    width: 45%;
 }
 
 .history_cell{
-    border: 1px solid black;
     width: 35%;
     vertical-align: top;
 }
 
 .history_table{
-    border: 1px solid black;
     margin: 20px auto;
 }
 
 .history_table td, .history_table th{
-    border: 1px solid black;
     padding-left: 10px;
     padding-right: 10px;
     text-align: center;
     font-weight: normal;
+}
+
+footer{
+    background-color: dimgrey;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
