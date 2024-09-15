@@ -126,7 +126,7 @@ function add_data_to_history(x, y, r, hit, execution_time){
 
     let xText = document.createTextNode(x.toString());
     let yText = document.createTextNode(y.toString());
-    let rText = document.createTextNode(r.toString());
+    let rText = document.createTextNode(Number(r).toFixed(2).toString());
     let hitText = document.createTextNode(hit.toString());
     let timeText = document.createTextNode(new Date().toLocaleTimeString());
     let executionTimeText = document.createTextNode(execution_time.toString());

@@ -17,7 +17,7 @@ td, th{
 .body_table{
     margin: 10px auto;
     font-weight: normal;
-    font-size: 18pt;
+    font-size: 17pt;
 }
 
 .header{
@@ -74,11 +74,11 @@ input{
 
 .graph_cell{
     text-align: center;
-    width: 45%;
+    width: 44%;
 }
 
 .history_cell{
-    width: 35%;
+    width: 40%;
     vertical-align: top;
     padding: 10px;
 }
