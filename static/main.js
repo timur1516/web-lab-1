@@ -68,6 +68,13 @@ async function submitForm(event) {
     }
     let end_time_point = Date.now();
 
+    //Если на сервере произошла ошибка, говорим об этом
+    if(responseData.stateCode === "ERROR"){
+        console.error('Server stateCode is: ERROR');
+        show_user_message(message_type.SOME_SERVER_ERROR);
+        return;
+    }
+
     //Записываем данные в историию
     let execution_time = end_time_point - start_time_point;
     let hit = responseData.answer;

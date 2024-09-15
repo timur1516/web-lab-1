@@ -2,8 +2,7 @@ plugins {
     id 'java'
 }
 
-group = 'common'
-version = 'server'
+group = 'ru.timur'
 
 repositories {
     mavenCentral()
@@ -19,9 +18,9 @@ test {
 
 jar{
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
+    archiveBaseName = 'server'
     manifest {
-        attributes 'Main-Class' : 'common.Main'
+        attributes 'Main-Class' : 'ru.timur.Main'
     }
 
     from{
