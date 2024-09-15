@@ -2,124 +2,127 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lab1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-    <h2 class="student_info">Ступин Тимур P3208 409642</h2>
-</header>
-<main>
-    <table class="main_table">
-        <tr>
-            <td class="form_cell">
-                <form class="form" onsubmit="submitForm(event)">
-                    <table class="form_table">
-                        <tr>
-                            <td class="form_label">X</td>
-                            <td>
-                                <input type="checkbox" name="x_checkbox_input" id="x_-3" value="5">
-                                <label for="x_-3"></label>-3<br>
-                                <input type="checkbox" name="x_checkbox_input" id="x_-2" value="-2">
-                                <label for="x_-2">-2</label><br>
-                                <input type="checkbox" name="x_checkbox_input" id="x_-1" value="-1">
-                                <label for="x_-1">-1</label><br>
-                                <input type="checkbox" name="x_checkbox_input" id="x_0" value="0">
-                                <label for="x_0">0</label><br>
-                                <input type="checkbox" name="x_checkbox_input" id="x_1" value="1">
-                                <label for="x_1">1</label><br>
-                                <input type="checkbox" name="x_checkbox_input" id="x_2" value="2">
-                                <label for="x_2">2</label><br>
-                                <input type="checkbox" name="x_checkbox_input" id="x_3" value="3">
-                                <label for="x_3">3</label><br>
-                                <input type="checkbox" name="x_checkbox_input" id="x_4" value="4">
-                                <label for="x_4">4</label><br>
-                                <input type="checkbox" name="x_checkbox_input" id="x_5" value="5">
-                                <label for="x_5">5</label><br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="form_label">R</td>
-                            <td>
-                                <input type="text" name="r_text_input" id="r_text" placeholder="Введите R">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="form_label">Y</td>
-                            <td>
-                                <input type="radio" name="y_radio_input" id="r_1" value="1">
-                                <label for="r_1">1</label><br>
-                                <input type="radio" name="y_radio_input" id="r_2" value="2">
-                                <label for="r_2">2</label><br>
-                                <input type="radio" name="y_radio_input" id="r_3" value="3">
-                                <label for="r_3">3</label><br>
-                                <input type="radio" name="y_radio_input" id="r_4" value="4">
-                                <label for="r_4">4</label><br>
-                                <input type="radio" name="y_radio_input" id="r_5" value="5">
-                                <label for="r_5">5</label><br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="3">
-                                <input type="submit" id="submit_button" value="Отправить">
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-            </td>
-            <td class="graph_cell">
-                <svg width="600" , height="600">
-                    <path d="M 300,60 L 540,60 L 540,300 L 420,300 L 300,540 L 300,60 A 240 240 90 0 0 60, 300 L 300,300"
-                          fill="blue" opacity=".5"/>
-
-                    <line x1="300" y1="0" x2="300" y2="600" stroke="black"/>
-                    <line x1="0" y1="300" x2="600" y2="300" stroke="black"/>
-
-                    <line x1="600" y1="300" x2="580" y2="290" stroke="black"/>
-                    <line x1="600" y1="300" x2="580" y2="310" stroke="black"/>
-                    <text x="580" y="280">X</text>
-
-                    <line x1="300" y1="0" x2="290" y2="20" stroke="black"/>
-                    <line x1="300" y1="0" x2="310" y2="20" stroke="black"/>
-                    <text x="320" y="20">Y</text>
-
-                    <line x1="60" y1="295" x2="60" y2="305" stroke="black"/>
-                    <text x="50" y="285">-R</text>
-                    <line x1="180" y1="295" x2="180" y2="305" stroke="black"/>
-                    <text x="170" y="285">-R/2</text>
-                    <line x1="420" y1="295" x2="420" y2="305" stroke="black"/>
-                    <text x="410" y="285">R/2</text>
-                    <line x1="540" y1="295" x2="540" y2="305" stroke="black"/>
-                    <text x="530" y="285">R</text>
-
-                    <line x1="295" y1="60" x2="305" y2="60" stroke="black"/>
-                    <text x="310" y="67">R</text>
-                    <line x1="295" y1="180" x2="305" y2="180" stroke="black"/>
-                    <text x="310" y="187">R/2</text>
-                    <line x1="295" y1="420" x2="305" y2="420" stroke="black"/>
-                    <text x="310" y="427">-R/2</text>
-                    <line x1="295" y1="540" x2="305" y2="540" stroke="black"/>
-                    <text x="310" y="547">-R</text>
-                </svg>
-            </td>
-            <td class="history_cell">
-                <table id="history_table" class="history_table">
+<table class="body_table">
+    <thead class="header">
+    <tr>
+        <th colspan="3"><p>Ступин Тимур P3208 Вариант: 229</p></th>
+    </tr>
+    </thead>
+    <tbody class="main">
+    <tr>
+        <td class="form_cell">
+            <form class="form" onsubmit="submitForm(event)">
+                <table class="form_table">
                     <tr>
-                        <th>X</th>
-                        <th>Y</th>
-                        <th>R</th>
-                        <th>Попадание</th>
-                        <th>Время<br>запроса</th>
-                        <th>Время<br>выполнения</th>
+                        <td class="form_label">X</td>
+                        <td>
+                            <input type="checkbox" name="x_checkbox_input" id="x_-3" value="5">
+                            <label for="x_-3"></label>-3<br>
+                            <input type="checkbox" name="x_checkbox_input" id="x_-2" value="-2">
+                            <label for="x_-2">-2</label><br>
+                            <input type="checkbox" name="x_checkbox_input" id="x_-1" value="-1">
+                            <label for="x_-1">-1</label><br>
+                            <input type="checkbox" name="x_checkbox_input" id="x_0" value="0">
+                            <label for="x_0">0</label><br>
+                            <input type="checkbox" name="x_checkbox_input" id="x_1" value="1">
+                            <label for="x_1">1</label><br>
+                            <input type="checkbox" name="x_checkbox_input" id="x_2" value="2">
+                            <label for="x_2">2</label><br>
+                            <input type="checkbox" name="x_checkbox_input" id="x_3" value="3">
+                            <label for="x_3">3</label><br>
+                            <input type="checkbox" name="x_checkbox_input" id="x_4" value="4">
+                            <label for="x_4">4</label><br>
+                            <input type="checkbox" name="x_checkbox_input" id="x_5" value="5">
+                            <label for="x_5">5</label><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="form_label">R</td>
+                        <td>
+                            <input type="text" name="r_text_input" id="r_text" placeholder="Введите R" onpaste="validatePaste(this, event)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="form_label">Y</td>
+                        <td>
+                            <input type="radio" name="y_radio_input" id="r_1" value="1">
+                            <label for="r_1">1</label><br>
+                            <input type="radio" name="y_radio_input" id="r_2" value="2">
+                            <label for="r_2">2</label><br>
+                            <input type="radio" name="y_radio_input" id="r_3" value="3">
+                            <label for="r_3">3</label><br>
+                            <input type="radio" name="y_radio_input" id="r_4" value="4">
+                            <label for="r_4">4</label><br>
+                            <input type="radio" name="y_radio_input" id="r_5" value="5">
+                            <label for="r_5">5</label><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <input type="submit" id="submit_button" value="Отправить">
+                        </td>
                     </tr>
                 </table>
-            </td>
-        </tr>
-    </table>
-</main>
-<footer>
-    <h3>ИТМО 2024</h3>
-</footer>
+            </form>
+        </td>
+        <td class="graph_cell">
+            <svg width="600" , height="600">
+                <path d="M 300,60 L 540,60 L 540,300 L 420,300 L 300,540 L 300,60 A 240 240 90 0 0 60, 300 L 300,300"
+                      fill="blue" opacity=".5"/>
+
+                <line x1="300" y1="0" x2="300" y2="600" stroke="black"/>
+                <line x1="0" y1="300" x2="600" y2="300" stroke="black"/>
+
+                <line x1="600" y1="300" x2="580" y2="290" stroke="black"/>
+                <line x1="600" y1="300" x2="580" y2="310" stroke="black"/>
+                <text x="580" y="280">X</text>
+
+                <line x1="300" y1="0" x2="290" y2="20" stroke="black"/>
+                <line x1="300" y1="0" x2="310" y2="20" stroke="black"/>
+                <text x="320" y="20">Y</text>
+
+                <line x1="60" y1="295" x2="60" y2="305" stroke="black"/>
+                <text x="50" y="285">-R</text>
+                <line x1="180" y1="295" x2="180" y2="305" stroke="black"/>
+                <text x="170" y="285">-R/2</text>
+                <line x1="420" y1="295" x2="420" y2="305" stroke="black"/>
+                <text x="410" y="285">R/2</text>
+                <line x1="540" y1="295" x2="540" y2="305" stroke="black"/>
+                <text x="530" y="285">R</text>
+
+                <line x1="295" y1="60" x2="305" y2="60" stroke="black"/>
+                <text x="310" y="67">R</text>
+                <line x1="295" y1="180" x2="305" y2="180" stroke="black"/>
+                <text x="310" y="187">R/2</text>
+                <line x1="295" y1="420" x2="305" y2="420" stroke="black"/>
+                <text x="310" y="427">-R/2</text>
+                <line x1="295" y1="540" x2="305" y2="540" stroke="black"/>
+                <text x="310" y="547">-R</text>
+            </svg>
+        </td>
+        <td class="history_cell">
+            <table id="history_table">
+                <tr>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>R</th>
+                    <th>Попадание</th>
+                    <th>Время<br>запроса</th>
+                    <th>Время<br>выполнения</th>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tfoot class="footer">
+    <tr>
+        <td colspan="3"><p>ИТМО 2024</p></td>
+    </tr>
+    </tfoot>
+</table>
 <script type="text/javascript" src="main.js"></script>
 </body>
 </html>

@@ -27,6 +27,10 @@ r_text_input.addEventListener('input', function ()  {
     if (!/^-?\d*\.?\d*$/.test(this.value)) this.value = this.value.slice(0, -1);
 });
 
+r_text_input.addEventListener('input', function ()  {
+    if (!/^-?\d*\.?\d*$/.test(this.value)) this.value = this.value.slice(0, -1);
+});
+
 //Функция отправки запроса на сервер и получения ответа
 async function submitForm(event) {
     // Предотвращаем перезагрузку страницы

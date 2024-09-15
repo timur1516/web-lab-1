@@ -1,22 +1,6 @@
-body {
+*{
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-header{
-    background-color: dimgrey;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-}
-
-main {
-    font-size: 18pt;
-    flex-grow: 1;
-    display: flex;
+    padding: 0;
 }
 
 table{
@@ -26,32 +10,47 @@ table{
 
 td, th{
     border: 1px solid black;
+    font-weight: normal;
+    padding: 5px;
 }
 
-.main_table{
-    flex-grow: 1;
-    background-color: #F5DEB3;
+.body_table{
+    margin: 10px auto;
+    font-weight: normal;
+    font-size: 18pt;
+}
+
+.header{
+    font-family:  fantasy;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.header:hover{
+    background-color: darkcyan;
+}
+
+.header p::first-letter{
+    color: darkblue;
 }
 
 .form_cell{
-    border: 1px solid black;
     width: 20%;
 }
 
 .form_table{
     border-collapse: separate;
     margin: auto;
-    border: 2px solid red;
     border-radius: 20px;
-    padding: 10px;
+    padding: 10%;
+}
+
+.form_table:hover{
+    border: 2px solid darkblue;
 }
 
 .form_table td, .form_table th{
     border: none;
-}
-
-.form_label{
-    padding: 10px;
 }
 
 input[type="checkbox"], input[type="radio"] {
@@ -61,11 +60,16 @@ input[type="checkbox"], input[type="radio"] {
 
 #r_text{
     width: 150px;
-    font-size: 18pt;
+    font-size: inherit;
+}
+
+input{
+    margin-left: 15%;
 }
 
 #submit_button{
-    font-size: 18pt;
+    font-size: inherit;
+    padding: 5%;
 }
 
 .graph_cell{
@@ -76,23 +80,19 @@ input[type="checkbox"], input[type="radio"] {
 .history_cell{
     width: 35%;
     vertical-align: top;
+    padding: 10px;
 }
 
-.history_table{
-    margin: 20px auto;
+#history_table{
+    margin: auto;
 }
 
-.history_table td, .history_table th{
+#history_table td, #history_table th{
     padding-left: 10px;
     padding-right: 10px;
     text-align: center;
-    font-weight: normal;
 }
 
-footer{
-    background-color: dimgrey;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+tfoot{
+    text-align: center;
 }
