@@ -1,3 +1,12 @@
+//Подобие enum для обработки исключений и вывода сообщений
+const message_type = Object.freeze({
+    OK: 1,
+    EMPTY_FIELDS: 2,
+    R_NOT_DIGIT: 3,
+    INVALID_R: 4,
+    SOME_SERVER_ERROR: 5
+})
+
 //Имитация radio используя checkbox
 const x_checkboxes = document.getElementsByName("x_checkbox_input");
 let active_x_checkbox = null;
@@ -30,15 +39,33 @@ async function submitForm(event) {
     const r = formData.get("r_text_input");
 
     //Проводим валидацию
-    if(!is_valid_data(x, y, r)) return;
+    let result = validate_data(x, y, r);
+    if(result !== message_type.OK){
+        show_user_message(result);
+        return;
+    }
 
     //Выполняем запрос измеряя время
-    const queryParams = new URLSearchParams(formData).toString();
+    const queryParams = new URLSearchParams();
+    queryParams.append("X", x);
+    queryParams.append("Y", y);
+    queryParams.append("R", r);
 
     let start_time_point = Date.now();
-    const response = await fetch(`/fcgi-bin/server.jar?${queryParams}`);
-    const responseData = await response.json();
-
+    let responseData;
+    try {
+        let response = await fetch(`/fcgi-bin/server.jar?${queryParams.toString()}`);
+        if(!response.ok){
+            console.error(`Response status: ${response.status}`);
+            show_user_message(message_type.SOME_SERVER_ERROR);
+            return;
+        }
+        responseData = await response.json();
+    } catch (error){
+        console.error(error);
+        show_user_message(message_type.SOME_SERVER_ERROR);
+        return;
+    }
     let end_time_point = Date.now();
 
     //Записываем данные в историию
@@ -47,17 +74,30 @@ async function submitForm(event) {
     add_data_to_history(x, y, r, hit, execution_time);
 }
 
+//Метод для показа сообшений пользователю
+function show_user_message(message){
+    switch (message){
+        case message_type.EMPTY_FIELDS:
+            alert("Пожалуйста заполните все поля!");
+            break;
+        case message_type.R_NOT_DIGIT:
+            alert("Значение R должно быть числом!");
+            break;
+        case message_type.INVALID_R:
+            alert("Значение R должно быть в пределах [-5; 5]!");
+            break;
+        case message_type.SOME_SERVER_ERROR:
+            alert("Упс... Произошла ошибка при работе с сервером. Пожалуйста, повторите попытку позже.");
+            break;
+    }
+}
+
 //Функция валидации данных формы
-function is_valid_data(x, y, r){
-    if(x == null || y == null || r === ""){
-        alert("Пожалуйста заполните все поля!");
-        return false;
-    }
-    if(r < -5 || r > 5){
-        alert("Значение R должно быть в пределах [-5; 5]!");
-        return false;
-    }
-    return true;
+function validate_data(x, y, r){
+    if(x == null || y == null || r == null ||  r === "") return message_type.EMPTY_FIELDS;
+    if(isNaN(r) || isNaN(parseFloat(r))) return message_type.R_NOT_DIGIT
+    if(r < -5 || r > 5) return message_type.INVALID_R
+    return message_type.OK;
 }
 
 //Функция добавления данных в таблицу
