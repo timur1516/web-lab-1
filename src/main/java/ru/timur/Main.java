@@ -8,7 +8,7 @@ import java.util.Properties;
 import java.util.logging.*;
 
 public class Main {
-    private static final String HTTP_RESPONSE = "Content-Type: application/json\nContent-Length: %d\n\n%s";
+    private static final String HTTP_RESPONSE = "Status: %s\nContent-Type: application/json\nContent-Length: %d\n\n%s";
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) throws IOException {
@@ -24,33 +24,36 @@ public class Main {
 
             if (!request.getProperty("REQUEST_METHOD").equals("GET")) {
                 logger.warning(String.format("Received request type %s", request.getProperty("REQUEST_METHOD")));
+                sendResponse(Status.NOT_IMPLEMENTED, "");
                 continue;
             }
 
             String requestString = request.getProperty("QUERY_STRING");
             logger.info(String.format("Received request: %s", requestString));
 
-            String answer = getAnswer(requestString);
-            logger.info(String.format("Calculated answer for request: %s", answer));
-            
-            System.out.printf(HTTP_RESPONSE, answer.getBytes(StandardCharsets.UTF_8).length, answer);
-            logger.info("Answer sent");
+            try {
+                String answer = getAnswer(requestString);
+                logger.info(String.format("Calculated answer for request: %s", answer));
+                sendResponse(Status.OK, answer);
+            } catch (RequestDataParseException e) {
+                logger.severe(e.getMessage());
+                sendResponse(Status.BAD_REQUEST, "");
+            }
         }
-    }
-    
-    private static String getAnswer(String requestString) throws IOException {
-        RequestData requestData;
-        try {
-            requestData = RequestData.parseRequestData(requestString);
-        } catch (RequestDataParseException e){
-            logger.severe(e.getMessage());
-            return getJSONMessage(StateCode.ERROR, false);
-        }
-        return getJSONMessage(StateCode.OK, checkIntersection(requestData));
     }
 
-    private static String getJSONMessage(StateCode stateCode, boolean answer){
-        return String.format("{\"stateCode\": \"%s\",\n\"answer\": %b}", stateCode, answer);
+    private static void sendResponse(Status status, String content){
+        System.out.printf(HTTP_RESPONSE, status, content.getBytes(StandardCharsets.UTF_8).length, content);
+        logger.info("Answer sent");
+    }
+    
+    private static String getAnswer(String requestString) throws RequestDataParseException {
+        RequestData requestData = RequestData.parseRequestData(requestString);
+        return getJSONMessage(checkIntersection(requestData));
+    }
+
+    private static String getJSONMessage(boolean hit){
+        return String.format("{\"hit\": %b}", hit);
     }
 
     private static boolean checkIntersection(RequestData requestData) {
