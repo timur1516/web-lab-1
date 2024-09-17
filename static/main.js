@@ -4,20 +4,22 @@ window.addEventListener("load", loadTableData);
 const message_type = Object.freeze({
     OK: 1,
     EMPTY_FIELDS: 2,
-    SOME_SERVER_ERROR: 3
+    WRONG_X: 3,
+    SOME_SERVER_ERROR: 4
 })
 
-//Имитация radio используя checkbox
+let x_value = 0;
+
+//Бинарный ввод X ;)
 const x_checkboxes = document.getElementsByName("x_checkbox_input");
-let active_x_checkbox = null;
 x_checkboxes.forEach(checkbox => {checkbox.addEventListener("change", () => {
-    if(checkbox === active_x_checkbox){
-        active_x_checkbox = null;
+    let str = "0000"
+    for(let i = 0; i < x_checkboxes.length; i++){
+        str = str.slice(0, i) + (document.getElementById(i).checked ? "1" : "0") + str.slice(i + 1);
     }
-    else{
-        if(active_x_checkbox !== null) active_x_checkbox.checked = false;
-        active_x_checkbox = checkbox;
-    }
+    x_value = parseInt(str, 2);
+    if(x_value >= 8) x_value -= 16;
+    document.getElementById("x_value_label").textContent = x_value;
 })})
 
 //Функция отправки запроса на сервер и получения ответа
@@ -27,7 +29,7 @@ async function submitForm(event) {
 
     //Извлекаем данные формы
     const formData = new FormData(event.target);
-    const x = formData.get("x_checkbox_input");
+    const x = x_value
     const y = formData.get("y_radio_input");
     const r = formData.get("r_text_input");
 
@@ -69,6 +71,9 @@ function show_user_message(message){
         case message_type.EMPTY_FIELDS:
             alert("Пожалуйста заполните все поля!");
             break;
+        case message_type.WRONG_X:
+            alert("Значение X должно быть от -3 до 5");
+            break;
         case message_type.SOME_SERVER_ERROR:
             alert("Упс... Произошла ошибка при работе с сервером. Пожалуйста, повторите попытку позже.");
             break;
@@ -78,6 +83,7 @@ function show_user_message(message){
 //Функция валидации данных формы
 function validate_data(x, y, r){
     if(x == null || y == null || r == null ||  r === "") return message_type.EMPTY_FIELDS;
+    if(x < -3 || x > 5) return message_type.WRONG_X;
     return message_type.OK;
 }
 
@@ -99,7 +105,7 @@ function add_data_to_history(x, y, r, hit, execution_time){
     let rText = document.createTextNode(Number(r).toFixed(2).toString());
     let hitText = document.createTextNode(hit.toString());
     let timeText = document.createTextNode(new Date().toLocaleTimeString());
-    let executionTimeText = document.createTextNode(execution_time.toString());
+    let executionTimeText = document.createTextNode(execution_time.toString() + "мс");
 
     tableData.push([xText.textContent, yText.textContent, rText.textContent, hitText.textContent, timeText.textContent, executionTimeText.textContent]);
     sessionStorage.setItem("tableData", JSON.stringify(tableData));
