@@ -60,13 +60,11 @@ async function submitForm(event) {
     try {
         let response = await fetch(`/fcgi-bin/server.jar?${queryParams.toString()}`);
         if(!response.ok){
-            console.error(`Response status: ${response.status}`);
             show_user_message(message_type.SOME_SERVER_ERROR);
             return;
         }
         responseData = await response.json();
     } catch (error){
-        console.error(error);
         show_user_message(message_type.SOME_SERVER_ERROR);
         return;
     }
