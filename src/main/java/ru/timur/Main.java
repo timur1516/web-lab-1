@@ -26,12 +26,6 @@ public class Main {
             startTime = System.currentTimeMillis();
             Properties request = FCGIInterface.request.params;
 
-            if (!request.getProperty("REQUEST_METHOD").equals("GET")) {
-                logger.warning(String.format("Received request type %s", request.getProperty("REQUEST_METHOD")));
-                sendResponse(Status.NOT_IMPLEMENTED, "");
-                continue;
-            }
-
             String requestString = request.getProperty("QUERY_STRING");
             logger.info(String.format("Received request: %s", requestString));
 

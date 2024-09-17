@@ -7,12 +7,6 @@ public enum Status {
             return "200 OK";
         }
     },
-    NOT_IMPLEMENTED{
-        @Override
-        public String toString() {
-            return "501 Not Implemented";
-        }
-    },
     BAD_REQUEST{
         @Override
         public String toString() {
