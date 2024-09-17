@@ -4,12 +4,15 @@ import com.fastcgi.FCGIInterface;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.Properties;
 import java.util.logging.*;
 
 public class Main {
     private static final String HTTP_RESPONSE = "Status: %s\nContent-Type: application/json\nContent-Length: %d\n\n%s";
     private static final Logger logger = Logger.getLogger(Main.class.getName());
+
+    private static long startTime;
 
     public static void main(String[] args) throws IOException {
         var fcgiInterface = new FCGIInterface();
@@ -20,6 +23,7 @@ public class Main {
         logger.setLevel(Level.ALL);
 
         while (fcgiInterface.FCGIaccept() >= 0) {
+            startTime = System.currentTimeMillis();
             Properties request = FCGIInterface.request.params;
 
             if (!request.getProperty("REQUEST_METHOD").equals("GET")) {
@@ -53,7 +57,9 @@ public class Main {
     }
 
     private static String getJSONMessage(boolean hit){
-        return String.format("{\"hit\": %b}", hit);
+        long endTime = System.currentTimeMillis();
+        long executionTime = endTime - startTime;
+        return String.format("{\"hit\": %b, \"executionTime\": %d}", hit, executionTime);
     }
 
     private static boolean checkIntersection(RequestData requestData) {

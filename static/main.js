@@ -22,17 +22,6 @@ x_checkboxes.forEach(checkbox => {checkbox.addEventListener("change", () => {
     }
 })})
 
-//Защита поля r от вставки и ввода чего-либо кроме чисел
-const r_text_input = document.getElementById("r_text");
-r_text_input.addEventListener('paste', event => event.preventDefault());
-r_text_input.addEventListener('input', function ()  {
-    if (!/^-?\d*\.?\d*$/.test(this.value)) this.value = this.value.slice(0, -1);
-});
-
-r_text_input.addEventListener('input', function ()  {
-    if (!/^-?\d*\.?\d*$/.test(this.value)) this.value = this.value.slice(0, -1);
-});
-
 //Функция отправки запроса на сервер и получения ответа
 async function submitForm(event) {
     // Предотвращаем перезагрузку страницы
@@ -57,7 +46,6 @@ async function submitForm(event) {
     queryParams.append("Y", y);
     queryParams.append("R", r);
 
-    let start_time_point = Date.now();
     let responseData;
     try {
         let response = await fetch(`/fcgi-bin/server.jar?${queryParams.toString()}`);
@@ -70,10 +58,9 @@ async function submitForm(event) {
         show_user_message(message_type.SOME_SERVER_ERROR);
         return;
     }
-    let end_time_point = Date.now();
 
     //Записываем данные в историию
-    let execution_time = end_time_point - start_time_point;
+    let execution_time = responseData.executionTime;
     let hit = responseData.hit;
     add_data_to_history(x, y, r, hit, execution_time);
 }
