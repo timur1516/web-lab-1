@@ -43,7 +43,7 @@
                     <tr>
                         <td class="form_label">R</td>
                         <td>
-                            <input type="text" name="r_text_input" id="r_text" placeholder="Введите R"
+                            <input type="number" min="-5" max="5" name="r_text_input" id="r_text" placeholder="Введите R"
                                    onpaste="validatePaste(this, event)">
                         </td>
                     </tr>
@@ -117,6 +117,7 @@
                     <th>Время<br>выполнения</th>
                 </tr>
                 </thead>
+                <tbody></tbody>
             </table>
         </td>
     </tr>
