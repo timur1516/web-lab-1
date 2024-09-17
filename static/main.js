@@ -1,3 +1,5 @@
+let tableData = [];
+window.addEventListener("load", loadTableData);
 //Подобие enum для обработки исключений и вывода сообщений
 const message_type = Object.freeze({
     OK: 1,
@@ -104,7 +106,7 @@ function validate_data(x, y, r){
 
 //Функция добавления данных в таблицу
 function add_data_to_history(x, y, r, hit, execution_time){
-    let table_ref = document.getElementById("history_table");
+    let table_ref = document.querySelector("#history_table tbody");
 
     let newRow = table_ref.insertRow(-1);
 
@@ -122,10 +124,29 @@ function add_data_to_history(x, y, r, hit, execution_time){
     let timeText = document.createTextNode(new Date().toLocaleTimeString());
     let executionTimeText = document.createTextNode(execution_time.toString());
 
+    tableData.push([xText.textContent, yText.textContent, rText.textContent, hitText.textContent, timeText.textContent, executionTimeText.textContent]);
+    sessionStorage.setItem("tableData", JSON.stringify(tableData));
+
     xCell.appendChild(xText);
     yCell.appendChild(yText);
     rCell.appendChild(rText);
     hitCell.appendChild(hitText);
     timeCell.appendChild(timeText);
     executionTimeCell.appendChild(executionTimeText);
+}
+
+// Функция для восстановления данных таблицы из sessionStorage
+function loadTableData() {
+    let savedData = sessionStorage.getItem("tableData");
+    if (savedData) {
+        tableData = JSON.parse(savedData);
+        const table = document.querySelector("#history_table tbody");
+        tableData.forEach(row => {
+            let newRow = table.insertRow(-1);
+            row.forEach(element => {
+                let newCell = newRow.insertCell(-1);
+                newCell.appendChild(document.createTextNode(element));
+            });
+        });
+    }
 }

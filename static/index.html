@@ -43,7 +43,8 @@
                     <tr>
                         <td class="form_label">R</td>
                         <td>
-                            <input type="text" name="r_text_input" id="r_text" placeholder="Введите R" onpaste="validatePaste(this, event)">
+                            <input type="text" name="r_text_input" id="r_text" placeholder="Введите R"
+                                   onpaste="validatePaste(this, event)">
                         </td>
                     </tr>
                     <tr>
@@ -106,6 +107,7 @@
         </td>
         <td class="history_cell">
             <table id="history_table">
+                <thead>
                 <tr>
                     <th>X</th>
                     <th>Y</th>
@@ -114,6 +116,8 @@
                     <th>Время<br>запроса</th>
                     <th>Время<br>выполнения</th>
                 </tr>
+                </thead>
+                <tbody></tbody>
             </table>
         </td>
     </tr>
