@@ -1,59 +1,68 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-body{
-    padding: 10px;
+body {
+    height: 100vh;
+    width: 100vw;
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
-table{
+table {
     table-layout: fixed;
     border-collapse: collapse;
 }
 
-td, th{
+td, th {
     border: 1px solid black;
-    font-weight: normal;
+    font-weight: inherit;
     padding: 5px;
 }
 
-.body_table{
-    margin: 10px auto;
+.body_table {
+    margin: 5px auto;
     font-weight: normal;
     font-size: 17pt;
 }
 
-.header{
-    font-family:  fantasy;
-    font-weight: normal;
+.header {
+    font-family: fantasy;
     font-size: 20px;
 }
 
-.header:hover{
+.header:hover {
     background-color: darkcyan;
 }
 
-.header p::first-letter{
+.header p::first-letter {
     color: darkblue;
 }
 
-.form_cell{
-    width: 20%;
+#error_field {
+    visibility: hidden;
+    background-color: #ea3267;
+    border-radius: 10px;
+    border: 2px solid red;
+    padding: 10px;
+    margin: 5px auto;
 }
 
-.form_table{
+.form_table {
     border-collapse: separate;
-    margin: auto;
+    margin: 0 auto;
+    padding: 10px;
     border-radius: 20px;
-    padding: 10%;
 }
 
-.form_table:hover{
+.form_table:hover {
     border: 2px solid darkblue;
 }
 
-.form_table td, .form_table th{
+.form_table td, .form_table th {
     border: none;
 }
 
@@ -62,45 +71,43 @@ input[type="checkbox"], input[type="radio"] {
     height: 20px;
 }
 
-#r_text{
+#y_text {
     width: 150px;
     font-size: inherit;
 }
 
-#submit_button{
+#submit_button {
     font-size: inherit;
-    padding: 5%;
+    margin: 0 auto;
+    padding: 5px;
 }
 
-#x_value_label{
-    padding: 10px;
-}
-
-.graph_cell{
+.graph_cell {
     text-align: center;
-    width: 44%;
 }
 
-.history_cell{
-    width: 40%;
+svg {
+    margin: 0 auto;
+}
+
+.history_cell {
     vertical-align: top;
-    padding: 10px;
 }
 
-#history_table{
-    margin: auto;
+#history_table {
+    margin: 0 auto;
 }
 
-#history_table td, #history_table th{
+#history_table td, #history_table th {
+    text-align: center;
     padding-left: 10px;
     padding-right: 10px;
-    text-align: center;
 }
 
-#history_table td{
+#history_table td {
     word-break: break-all;
 }
 
-tfoot{
+.footer {
     text-align: center;
 }

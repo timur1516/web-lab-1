@@ -15,6 +15,7 @@
     <tbody class="main">
     <tr>
         <td class="form_cell">
+            <p id="error_field"></p>
             <form class="form" onsubmit="submitForm(event)">
                 <table class="form_table">
                     <tr>
@@ -28,24 +29,24 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="form_label">R</td>
+                        <td class="form_label">Y</td>
                         <td>
-                            <input type="number" min="-5" max="5" step="0.01" name="r_text_input" id="r_text" placeholder="Введите R"
+                            <input type="number" min="-5" max="5" step="0.01" name="y_text_input" id="y_text" placeholder="Введите Y"
                                    onpaste="validatePaste(this, event)">
                         </td>
                     </tr>
                     <tr>
-                        <td class="form_label">Y</td>
+                        <td class="form_label">R</td>
                         <td>
-                            <input type="radio" name="y_radio_input" id="r_1" value="1">
+                            <input type="radio" name="r_radio_input" id="r_1" value="1">
                             <label for="r_1">1</label><br>
-                            <input type="radio" name="y_radio_input" id="r_2" value="2">
+                            <input type="radio" name="r_radio_input" id="r_2" value="2">
                             <label for="r_2">2</label><br>
-                            <input type="radio" name="y_radio_input" id="r_3" value="3">
+                            <input type="radio" name="r_radio_input" id="r_3" value="3">
                             <label for="r_3">3</label><br>
-                            <input type="radio" name="y_radio_input" id="r_4" value="4">
+                            <input type="radio" name="r_radio_input" id="r_4" value="4">
                             <label for="r_4">4</label><br>
-                            <input type="radio" name="y_radio_input" id="r_5" value="5">
+                            <input type="radio" name="r_radio_input" id="r_5" value="5">
                             <label for="r_5">5</label><br>
                         </td>
                     </tr>
